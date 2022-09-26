@@ -30,4 +30,23 @@ public class ProgrammaEventi {
         }
     }
 
+    public int ConteggioEventi() {
+        return this.eventi.Count;
+        // oppure fatta a mano
+        int count = 0;
+        foreach (Evento evento in this.eventi) {
+            count++;
+        }
+        return count;
+    }
+    public void SvuotaLista() {
+        //eventi.Clear();
+        //oppure fatta a mano
+        int size = this.eventi.Count;
+        for (int i = 0; i < size; i++)
+        {
+            this.eventi.RemoveRange(0, size - 1);
+        }
+    }
+
 }

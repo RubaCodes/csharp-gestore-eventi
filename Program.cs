@@ -51,7 +51,11 @@ try
     programma.AggiungiEvento(evento2);
     List<Evento> risultati = programma.EventiInData("12/12/2023");
     //test print statico, funziona
-    ProgrammaEventi.PrintList(risultati);   
+    ProgrammaEventi.PrintList(risultati);
+    Console.WriteLine(programma.ConteggioEventi());
+    programma.SvuotaLista();
+    Console.WriteLine(programma.ConteggioEventi());
+
 }
 catch (CapienzaMin e)
 {
