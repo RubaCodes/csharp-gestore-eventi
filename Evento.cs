@@ -1,29 +1,27 @@
-﻿using System.Runtime.Serialization;
-
+﻿
 public class Evento {
+    private string _titolo ;
+    private DateTime _data ;
+    private int _capienzaMax;
+
     /*
     * Setter / Getter
     */
     public string Titolo { 
         get {
-            return Titolo;
+            return this._titolo;
         } 
         set {
-            if (Titolo == "") {
-                throw new EmptyTitle("Il Titolo inserito non puo' essere vuoto");
-            }
-            Titolo = value;
+            this._titolo = value;
         } 
     }
     public DateTime Data {
         get {
-            return Data;
+            return _data;
         }
         set {
-            if (Data < DateTime.Now) {
-                throw new DateExeption("La data deve essere successiva al data odierna");
-            }
-            Data = value;
+
+            _data = value;
         } 
     }
 
@@ -31,23 +29,32 @@ public class Evento {
     public int CapienzaMax
     { 
         get {
-            return CapienzaMax;
+            return _capienzaMax;
             } 
         private set {
-            if (CapienzaMax < 1) {
-                throw new CapienzaMin("La Capienza massima dell' evento deve essere maggiore di 0"); 
-            }
-            CapienzaMax = value;
+
+            _capienzaMax = value;
         } 
     }
     /*
      * Costruttore
      */
-    public Evento(string title,DateTime data, int capienza) {
-
+    public Evento(string title, DateTime data, int capienza) {
+            if (title == "")
+            {
+                throw new EmptyTitle("Il Titolo inserito non puo' essere vuoto");
+            }
             Titolo = title;
+            if (data < DateTime.Now)
+            {
+                throw new DateExeption("La data deve essere successiva al data odierna");
+            }
             Data = data;
-            CapienzaMax = capienza;
+            if (capienza < 1)
+            {
+                throw new CapienzaMin("La Capienza massima dell' evento deve essere maggiore di 0");
+            }
+             CapienzaMax = capienza;
             PostiPrenotati = 0;
     }
 
@@ -70,7 +77,8 @@ public class Evento {
     }
     public override string ToString()
     {
-        return $"{Data.ToString("dd/MM/yyyy")} - {Titolo} ";
+        string data = Data.ToString("dd/MM/yyyy");
+        return $"{data} - {this.Titolo} ";
     }
 }
 
