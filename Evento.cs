@@ -1,5 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Runtime.Serialization;
+
 public class Evento {
+    /*
+    * Setter / Getter
+    */
     public string Titolo { 
         get {
             return Titolo;
@@ -36,7 +40,9 @@ public class Evento {
             CapienzaMax = value;
         } 
     }
-
+    /*
+     * Costruttore
+     */
     public Evento(string title,DateTime data, int capienza) {
 
             Titolo = title;
@@ -44,7 +50,32 @@ public class Evento {
             CapienzaMax = capienza;
             PostiPrenotati = 0;
     }
+
+    /*
+     * Metodi
+     */
+    public void PrenotaPosti( int posti) {
+        if (PostiPrenotati + posti > CapienzaMax || Data < DateTime.Now) {
+            throw new ImpossibilePrenotareException("Impossibile Prenotare: L'evento e' terminato o non ci sono piu posti disponibili per la prenotazione");
+        }
+            PostiPrenotati += posti;
+    }
+    public void DisdiciPosti(int posti)
+    {
+        if (PostiPrenotati - posti < 0 || Data < DateTime.Now)
+        {
+            throw new ImpossibileDisdireException("Impossibile Disdire: L'evento e' terminato o il numero di posti da disdire non e' valido ");
+        }
+        PostiPrenotati -= posti;
+    }
+    public override string ToString()
+    {
+        return $"{Data.ToString("dd/MM/yyyy")} - {Titolo} ";
+    }
 }
+
+
+
 
 
 /*
@@ -60,4 +91,15 @@ public class CapienzaMin : Exception
 public class DateExeption : Exception
 {
     public DateExeption(string message) : base(message) { }
+}
+/*
+ * eccezioni sui metodi
+ */
+public class ImpossibilePrenotareException : Exception
+{
+    public ImpossibilePrenotareException(string message) : base(message) { }
+}
+public class ImpossibileDisdireException : Exception
+{
+    public ImpossibileDisdireException(string message) : base(message) { }
 }
