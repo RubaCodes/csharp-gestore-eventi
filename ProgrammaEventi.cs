@@ -48,5 +48,16 @@ public class ProgrammaEventi {
             this.eventi.RemoveRange(0, size - 1);
         }
     }
+    public string  InfoProgrammi()
+    {
+        Console.WriteLine("Informazioni programma eventi");
+        string risultato = "";
+        foreach (Evento evento in this.eventi)
+        {
+            risultato += evento.ToString();
+            risultato += '\n';
+        }
+        return risultato;
+    }
 
 }

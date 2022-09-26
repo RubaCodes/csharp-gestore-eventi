@@ -53,8 +53,9 @@ try
     //test print statico, funziona
     ProgrammaEventi.PrintList(risultati);
     Console.WriteLine(programma.ConteggioEventi());
-    programma.SvuotaLista();
-    Console.WriteLine(programma.ConteggioEventi());
+    //programma.SvuotaLista();
+    //Console.WriteLine(programma.ConteggioEventi());
+    Console.WriteLine(programma.InfoProgrammi());
 
 }
 catch (CapienzaMin e)
