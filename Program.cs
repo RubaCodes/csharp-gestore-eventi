@@ -41,8 +41,6 @@ while(currentSize < numeroEventi)
     {
         Console.WriteLine(e.Message);
     }
-
-    //Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
 }
 
 Console.WriteLine("Il numero di eventi in programma e' " + programma.ConteggioEventi());

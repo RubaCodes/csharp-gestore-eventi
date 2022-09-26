@@ -1,11 +1,14 @@
-﻿
-
-public class Conferenza : Evento
+﻿public class Conferenza : Evento
 {
-    private string _relatore;
-    private double _prezzo;
-    public string Relatore { get; set; }
-    public double Prezzo { get; set; }
+    /*
+     * GETTER E SETTER
+     */
+    public string Relatore { get; private set; }
+    public double Prezzo { get; private set; }
+
+    /*
+     * METODI
+     */
 
     public Conferenza(string title, DateTime data, int capienza, string relatore, double prezzo) : base(title, data, capienza) {
         if (relatore == "") {
@@ -28,7 +31,9 @@ public class Conferenza : Evento
         return $"{base.ToString()} - {this.Relatore} - {this.prezzoFormattato()}$ ";
     }
 }
-
+/*
+ * ECCEZIONI
+ */
 public class InvalidPriceException : Exception {
     public InvalidPriceException(string message) : base(message)
     {

@@ -1,8 +1,14 @@
 ﻿
 public class ProgrammaEventi {
-    private string Titolo { get; set; }
+    /*
+     * GETTER SETTER
+     */
+    private string Titolo { get;  set; }
     private List<Evento> eventi;
 
+    /*
+     * METODI
+     */
      public ProgrammaEventi(string titolo) {
         Titolo = titolo;
         eventi = new List<Evento>();
