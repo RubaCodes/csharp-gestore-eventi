@@ -22,6 +22,27 @@ try
     evento.PrenotaPosti(postiDaPrenotare);
     Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
     Console.WriteLine("Numero di Posti liberi: " + evento.PostiLiberi());
+    bool continua = true;
+    while (continua) {
+        Console.WriteLine("Vuoi disdire dei posti ? (si/no)");
+        string risposta = Console.ReadLine();
+        switch (risposta) {
+            case "si":
+                Console.WriteLine("Indica il numero di posti da disdire:");
+                int postiDaDisdire = Convert.ToInt32(Console.ReadLine());
+                evento.DisdiciPosti(postiDaDisdire);
+                Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
+                Console.WriteLine("Numero di Posti liberi: " + evento.PostiLiberi());
+                break;
+            case "no":
+                Console.WriteLine("Ok va bene!");
+                Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
+                Console.WriteLine("Numero di Posti liberi: " + evento.PostiLiberi());
+                continua = false;
+                break;
+        }
+    }
+    
 }
 catch (CapienzaMin e)
 {
