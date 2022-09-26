@@ -17,17 +17,11 @@ while(currentSize < numeroEventi)
     Console.WriteLine("Inserire il numero di posti dell'evento:");
     int capienza = Convert.ToInt32(Console.ReadLine());
 
-    //manipolazione data
-    string[] dataEsplosa = dataEvento.Split('/');
-    int dd = Convert.ToInt32(dataEsplosa[0]);
-    int mm = Convert.ToInt32(dataEsplosa[1]);
-    int yyyy = Convert.ToInt32(dataEsplosa[2]);
-
-    Evento evento = new Evento(nomeEvento, new DateTime(yyyy, mm, dd), capienza);
+    Evento evento = new Evento(nomeEvento, Evento.StringToDate(dataEvento), capienza);
     programma.AggiungiEvento(evento);
         currentSize++;
     }
-        catch (CapienzaMin e)
+    catch (CapienzaMin e)
     {
         Console.WriteLine(e.Message);
     }
@@ -47,6 +41,7 @@ while(currentSize < numeroEventi)
     {
         Console.WriteLine(e.Message);
     }
+
     //Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
 }
 
@@ -64,12 +59,64 @@ if (programma.EventiInData(dataRicerca).Count == 0)
 else {
     ProgrammaEventi.PrintList(programma.EventiInData(dataRicerca));
 }
+//svuotamento della lista
+//programma.SvuotaLista();
+
+/*
+ * BONUS CONFERENZA
+ */
+Console.WriteLine('\n'+ "---- BONUS ----"  + '\n');
+Console.WriteLine("Aggiungiamo anche una conferenza");
+//campi di input
+Console.WriteLine("Inserisci il nome della conferenza");
+string nomeConferenza = Console.ReadLine();
+Console.WriteLine("Inserisci la data della conferenza");
+string dataConferenza = Console.ReadLine();
+Console.WriteLine("Inserisci il numero di posti della conferenza");
+int postiConferenza = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Inserisci il nome del relatore della conferenza");
+string nomeRelatore = Console.ReadLine();
+Console.WriteLine("Inserisci prezzo della conferenza");
+double prezzoConferenza = Convert.ToDouble(Console.ReadLine());
+try
+{
+    Conferenza nuovaConferenza = new Conferenza(nomeConferenza, Evento.StringToDate(dataConferenza), postiConferenza, nomeRelatore, prezzoConferenza);
+    programma.AggiungiEvento(nuovaConferenza);
+}
+catch (CapienzaMin e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (EmptyTitle e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (DateExeption e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (ImpossibilePrenotareException e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (ImpossibileDisdireException e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (InvalidPriceException e) {
+    Console.WriteLine(e.Message);
+}
+catch (InvalidRelatoreException e)
+{
+    Console.WriteLine(e.Message);
+}
+//
+Console.WriteLine(programma.InfoProgrammi());
+
+//stampa con metodo statico della lista di risultati
+//gestione lista vuota
 
 //svuotamento della lista
-programma.SvuotaLista();
-
-
-
 /*
  *  MILESTONE 2
  */
@@ -134,11 +181,4 @@ programma.SvuotaLista();
 //catch (ImpossibileDisdireException e)
 //{
 //    Console.WriteLine(e.Message);
-//}
-
-
-//public class Conferenza : Evento {
-//    public string Relatore { get; set; }
-//    public double 
-
 //}

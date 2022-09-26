@@ -84,6 +84,13 @@ public class Evento {
         string data = Data.ToString("dd/MM/yyyy");
         return $"{data} - {this.Titolo} ";
     }
+    public static DateTime StringToDate(string data) {
+        string[] dataEsplosa = data.Split('/');
+        int dd = Convert.ToInt32(dataEsplosa[0]);
+        int mm = Convert.ToInt32(dataEsplosa[1]);
+        int yyyy = Convert.ToInt32(dataEsplosa[2]);
+        return new DateTime(yyyy, mm, dd);
+    }
 }
 
 

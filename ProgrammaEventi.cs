@@ -12,11 +12,7 @@ public class ProgrammaEventi {
     }
     public List<Evento> EventiInData(string data)
     {
-        string[] dataEsplosa = data.Split('/');
-        int dd = Convert.ToInt32(dataEsplosa[0]);
-        int mm = Convert.ToInt32(dataEsplosa[1]);
-        int yyyy = Convert.ToInt32(dataEsplosa[2]);
-        DateTime dataSentinella = new DateTime(yyyy, mm, dd);
+        DateTime dataSentinella = Evento.StringToDate(data);
 
         List<Evento> risultati = eventi.FindAll(e => e.Data == dataSentinella);
         return risultati;
