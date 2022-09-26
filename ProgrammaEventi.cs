@@ -1,7 +1,7 @@
 ﻿
 public class ProgrammaEventi {
-    public string Titolo { get; set; }
-    public List<Evento> eventi;
+    private string Titolo { get; set; }
+    private List<Evento> eventi;
 
      public ProgrammaEventi(string titolo) {
         Titolo = titolo;
