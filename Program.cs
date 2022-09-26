@@ -6,10 +6,11 @@ int numeroEventi = Convert.ToInt32(Console.ReadLine());
 //
 ProgrammaEventi programma = new ProgrammaEventi(nomeProgramma);
 
-
-for(int i = 0; i < numeroEventi; i++)
+int currentSize = 0;
+while(currentSize < numeroEventi)
 {
-    Console.WriteLine($"Inserire nome del {i+1} evento:");
+    try { 
+    Console.WriteLine($"Inserire nome del {currentSize+1} evento:");
     string nomeEvento = Console.ReadLine();
     Console.WriteLine("Inserire la data dell'evento (gg/mm/yyyy):");
     string dataEvento = Console.ReadLine();
@@ -24,8 +25,29 @@ for(int i = 0; i < numeroEventi; i++)
 
     Evento evento = new Evento(nomeEvento, new DateTime(yyyy, mm, dd), capienza);
     programma.AggiungiEvento(evento);
+        currentSize++;
+    }
+        catch (CapienzaMin e)
+    {
+        Console.WriteLine(e.Message);
+    }
+    catch (EmptyTitle e)
+    {
+        Console.WriteLine(e.Message);
+    }
+    catch (DateExeption e)
+    {
+        Console.WriteLine(e.Message);
+    }
+    catch (ImpossibilePrenotareException e)
+    {
+        Console.WriteLine(e.Message);
+    }
+    catch (ImpossibileDisdireException e)
+    {
+        Console.WriteLine(e.Message);
+    }
     //Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
-
 }
 
 Console.WriteLine("Il numero di eventi in programma e' " + programma.ConteggioEventi());
@@ -36,6 +58,12 @@ Console.WriteLine("\n" + "Inserisci una data per sapere che eventi ci saranno (g
 string dataRicerca = Console.ReadLine();
 ProgrammaEventi.PrintList(programma.EventiInData(dataRicerca));
 
+
+
+
+/*
+ *  MILESTONE 2
+ */
 //try
 //{
 //Console.WriteLine("Inserire nome dell'evento:");
