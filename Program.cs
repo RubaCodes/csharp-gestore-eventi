@@ -53,11 +53,20 @@ while(currentSize < numeroEventi)
 Console.WriteLine("Il numero di eventi in programma e' " + programma.ConteggioEventi());
 Console.WriteLine("Ecco il tuo programma eventi");
 Console.WriteLine(programma.InfoProgrammi());
-
+//stampa con metodo statico della lista di risultati
 Console.WriteLine("\n" + "Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy)");
 string dataRicerca = Console.ReadLine();
-ProgrammaEventi.PrintList(programma.EventiInData(dataRicerca));
+//gestione lista vuota
+if (programma.EventiInData(dataRicerca).Count == 0)
+{
+    Console.WriteLine("Nessun evento previsto per il giorno " + dataRicerca);
+}
+else {
+    ProgrammaEventi.PrintList(programma.EventiInData(dataRicerca));
+}
 
+//svuotamento della lista
+programma.SvuotaLista();
 
 
 
@@ -128,3 +137,8 @@ ProgrammaEventi.PrintList(programma.EventiInData(dataRicerca));
 //}
 
 
+//public class Conferenza : Evento {
+//    public string Relatore { get; set; }
+//    public double 
+
+//}
