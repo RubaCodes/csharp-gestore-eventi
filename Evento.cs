@@ -55,7 +55,7 @@ public class Evento {
                 throw new CapienzaMin("La Capienza massima dell' evento deve essere maggiore di 0");
             }
              CapienzaMax = capienza;
-            PostiPrenotati = 0;
+             PostiPrenotati = 0;
     }
 
     /*
@@ -74,6 +74,10 @@ public class Evento {
             throw new ImpossibileDisdireException("Impossibile Disdire: L'evento e' terminato o il numero di posti da disdire non e' valido ");
         }
         PostiPrenotati -= posti;
+    }
+
+    public int PostiLiberi() {
+        return CapienzaMax - PostiPrenotati;
     }
     public override string ToString()
     {

@@ -1,4 +1,6 @@
 ﻿//inizializzaione evento
+using System;
+
 Console.WriteLine("Inserire nome dell'evento:");
 string nomeEvento = Console.ReadLine();
 Console.WriteLine("Inserire la data dell'evento (gg/mm/yyyy):");
@@ -14,7 +16,12 @@ int yyyy = Convert.ToInt32(dataEsplosa[2]);
 
 try
 {
-    Evento evento = new Evento(nomeEvento,new DateTime(yyyy,mm,dd), capienza);
+    Evento evento = new Evento(nomeEvento, new DateTime(yyyy, mm, dd), capienza);
+    Console.WriteLine("Quanti posti vuoi prenotare?");
+    int postiDaPrenotare = Convert.ToInt32(Console.ReadLine());
+    evento.PrenotaPosti(postiDaPrenotare);
+    Console.WriteLine("Numero di Posti prenotati: " + evento.PostiPrenotati);
+    Console.WriteLine("Numero di Posti liberi: " + evento.PostiLiberi());
 }
 catch (CapienzaMin e)
 {
@@ -28,3 +35,12 @@ catch (DateExeption e)
 {
     Console.WriteLine(e.Message);
 }
+catch (ImpossibilePrenotareException e) {
+    Console.WriteLine(e.Message);
+}
+catch (ImpossibileDisdireException e)
+{
+    Console.WriteLine(e.Message);
+}
+
+
