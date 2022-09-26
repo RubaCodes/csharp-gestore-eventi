@@ -42,7 +42,16 @@ try
                 break;
         }
     }
-    
+    /*
+     *  TEST CERCA EVENTI PER DATA, FUNZIONA
+     */
+    Evento evento2 = new Evento("nome", new DateTime(2023,12,12),200);
+    ProgrammaEventi programma = new ProgrammaEventi("Nuovo Programma");
+    programma.AggiungiEvento(evento);
+    programma.AggiungiEvento(evento2);
+    List<Evento> risultati = programma.EventiInData("12/12/2023");
+    //test print statico, funziona
+    ProgrammaEventi.PrintList(risultati);   
 }
 catch (CapienzaMin e)
 {
